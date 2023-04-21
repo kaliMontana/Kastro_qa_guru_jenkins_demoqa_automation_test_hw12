@@ -1,3 +1,4 @@
+import os
 from time import sleep
 
 from selene import browser, have
@@ -33,5 +34,5 @@ def test_form():
             .should(have.size_greater_than(0)) \
             .element(index).click()
 
-    browser.element('[for=uploadPicture]').click()
+    browser.element('#uploadPicture').send_keys(os.path.join(os.getcwd(), 'test_img.jpg'))
     sleep(12000)
