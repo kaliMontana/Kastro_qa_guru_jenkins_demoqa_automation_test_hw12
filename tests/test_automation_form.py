@@ -1,11 +1,10 @@
 import os
-from time import sleep
 
 from selene import browser, have
 
 
 def test_form():
-    browser.open('https://demoqa.com/automation-practice-form')
+    browser.open('/automation-practice-form')
     browser.element('.main-header').should(have.exact_text('Practice Form'))
 
     browser.element('#firstName').type('Aleksandr')
@@ -34,5 +33,25 @@ def test_form():
             .should(have.size_greater_than(0)) \
             .element(index).click()
 
-    browser.element('#uploadPicture').send_keys(os.path.join(os.getcwd(), 'test_img.jpg'))
-    sleep(12000)
+    browser.element('#uploadPicture').send_keys(os.path.join(os.getcwd(), '../resources/test_img.jpg'))
+
+    browser.element('#currentAddress').type('Nizhny Novgorod')
+    browser.element('#state').click()
+    browser.element('#react-select-3-option-2').should(have.exact_text('Haryana')).click()
+    browser.element('#city').click()
+    browser.element('#react-select-4-option-1').should(have.exact_text('Panipat')).click()
+    browser.element('#submit').click()
+
+    browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
+    browser.all('tbody tr').should(have.exact_texts(
+        'Student Name Aleksandr Pushkin',
+        'Student Email Pushkin@proton.ru',
+        'Gender Male',
+        'Mobile 1234567890',
+        'Date of Birth 04 September,1985',
+        'Subjects Maths, Physics',
+        'Hobbies Sports, Reading, Music',
+        'Picture test_img.jpg',
+        'Address Nizhny Novgorod',
+        'State and City Haryana Panipat'
+    ))
