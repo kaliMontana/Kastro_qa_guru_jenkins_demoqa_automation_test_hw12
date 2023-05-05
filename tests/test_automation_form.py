@@ -33,7 +33,7 @@ def test_form():
             .should(have.size_greater_than(0)) \
             .element(index).click()
 
-    browser.element('#uploadPicture').send_keys(os.path.join(os.getcwd(), 'resources/test_img.jpg'))
+    browser.element('#uploadPicture').set_value(os.path.join(os.path.abspath('..\\resources'), 'test_img.jpg'))
 
     browser.element('#currentAddress').type('Nizhny Novgorod')
     browser.element('#state').click()

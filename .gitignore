@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /.idea/workspace.xml
+/.idea/Kastro_qa_guru-selene_automation_paractice_form_hw5.iml
