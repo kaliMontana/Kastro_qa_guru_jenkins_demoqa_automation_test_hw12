@@ -86,15 +86,17 @@ def test_form():
 
     registration_page.choose_locatio('Haryana', 'Panipat')
 
-    registration_page.registered_user_data().should(have.exact_texts(
-        'Aleksandr Pushkin',
-        'Pushkin@proton.ru',
-        'Male',
-        '1234567890',
-        '04 September,1985',
-        'Maths, Physics',
-        'Sports, Reading, Music',
-        'test_img.jpg',
-        'Nizhny Novgorod',
-        'Haryana Panipat'
-    ))
+    registration_page.registered_user_data().should(
+        have.exact_texts(
+            'Aleksandr Pushkin',
+            'Pushkin@proton.ru',
+            'Male',
+            '1234567890',
+            '04 September,1985',
+            'Maths, Physics',
+            'Sports, Reading, Music',
+            'test_img.jpg',
+            'Nizhny Novgorod',
+            'Haryana Panipat'
+        )
+    )
