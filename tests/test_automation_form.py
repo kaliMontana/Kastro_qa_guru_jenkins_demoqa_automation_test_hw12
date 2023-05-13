@@ -8,12 +8,12 @@ class RegistrationPage:
         browser.open('/automation-practice-form')
         browser.element('.main-header').should(have.exact_text('Practice Form'))
 
-    def fill_name(self):
-        browser.element('#firstName').type('Aleksandr')
-        browser.element('#lastName').type('Pushkin')
+    def fill_full_name(self, firstName, lastName):
+        browser.element('#firstName').type(firstName)
+        browser.element('#lastName').type(lastName)
 
-    def fill_email(self):
-        browser.element('#userEmail').type('Pushkin@proton.ru')
+    def fill_email(self, email):
+        browser.element('#userEmail').type(email)
 
     def choose_gender(self):
         browser.element('[for=gender-radio-1]').click()
@@ -77,9 +77,9 @@ def test_form():
     registration_page = RegistrationPage()
     registration_page.open()
 
-    registration_page.fill_name()
+    registration_page.fill_full_name('Aleksandr', 'Pushkin')
 
-    registration_page.fill_email()
+    registration_page.fill_email('Pushkin@proton.ru')
 
     registration_page.choose_gender()
 
