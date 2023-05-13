@@ -15,8 +15,8 @@ class RegistrationPage:
     def fill_email(self, email):
         browser.element('#userEmail').type(email)
 
-    def choose_gender(self):
-        browser.element('[for=gender-radio-1]').click()
+    def choose_gender(self, gender):
+        browser.element(f'[value={gender}] + label').click()
 
     def fill_tel_number(self):
         browser.element('#userNumber').type('1234567890')
@@ -81,7 +81,7 @@ def test_form():
 
     registration_page.fill_email('Pushkin@proton.ru')
 
-    registration_page.choose_gender()
+    registration_page.choose_gender('Male')
 
     registration_page.fill_tel_number()
 
