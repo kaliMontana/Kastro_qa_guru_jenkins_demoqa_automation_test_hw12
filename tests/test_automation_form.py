@@ -27,7 +27,7 @@ def test_form():
 
     registration_page.choose_locatio('Haryana', 'Panipat')
 
-    registration_page.registered_user_data().should(
+    registration_page.registered_user_data.should(
         have.exact_texts(
             'Aleksandr Pushkin',
             'Pushkin@proton.ru',

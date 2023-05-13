@@ -5,6 +5,9 @@ from selene import browser, have
 
 class RegistrationPage:
 
+    def __init__(self):
+        self.registered_user_data = browser.element('.table').all('td').even
+
     def open(self):
         browser.open('/automation-practice-form')
         browser.element('.main-header').should(have.exact_text('Practice Form'))
@@ -57,7 +60,3 @@ class RegistrationPage:
         browser.element('#city').click()
         browser.element('#react-select-4-option-1').should(have.exact_text(city)).click()
         browser.element('#submit').click()
-
-    def registered_user_data(self):
-        browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
-        return browser.element('.table').all('td').even
