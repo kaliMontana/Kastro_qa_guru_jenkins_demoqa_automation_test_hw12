@@ -59,17 +59,17 @@ class RegistrationPage:
 
     def should_registered_user_whith(self):
         browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
-        browser.all('tbody tr').should(have.exact_texts(
-            'Student Name Aleksandr Pushkin',
-            'Student Email Pushkin@proton.ru',
-            'Gender Male',
-            'Mobile 1234567890',
-            'Date of Birth 04 September,1985',
-            'Subjects Maths, Physics',
-            'Hobbies Sports, Reading, Music',
-            'Picture test_img.jpg',
-            'Address Nizhny Novgorod',
-            'State and City Haryana Panipat'
+        browser.element('.table').all('td').even.should(have.exact_texts(
+            'Aleksandr Pushkin',
+            'Pushkin@proton.ru',
+            'Male',
+            '1234567890',
+            '04 September,1985',
+            'Maths, Physics',
+            'Sports, Reading, Music',
+            'test_img.jpg',
+            'Nizhny Novgorod',
+            'Haryana Panipat'
         ))
 
 
