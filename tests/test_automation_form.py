@@ -57,21 +57,9 @@ class RegistrationPage:
         browser.element('#react-select-4-option-1').should(have.exact_text(city)).click()
         browser.element('#submit').click()
 
-    def should_registered_user_whith(self, full_name, email, gender, tel_number, date_of_birth, subjects, hobies,
-                                     file_name, current_address, state_and_city):
+    def registered_user_data(self):
         browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
-        browser.element('.table').all('td').even.should(have.exact_texts(
-            full_name,
-            email,
-            gender,
-            tel_number,
-            date_of_birth,
-            subjects,
-            hobies,
-            file_name,
-            current_address,
-            state_and_city
-        ))
+        return browser.element('.table').all('td').even
 
 
 def test_form():
@@ -98,7 +86,7 @@ def test_form():
 
     registration_page.choose_locatio('Haryana', 'Panipat')
 
-    registration_page.should_registered_user_whith(
+    registration_page.registered_user_data().should(have.exact_texts(
         'Aleksandr Pushkin',
         'Pushkin@proton.ru',
         'Male',
@@ -109,4 +97,4 @@ def test_form():
         'test_img.jpg',
         'Nizhny Novgorod',
         'Haryana Panipat'
-    )
+    ))
