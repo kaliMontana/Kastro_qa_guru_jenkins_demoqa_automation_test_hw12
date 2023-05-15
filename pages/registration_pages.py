@@ -30,10 +30,12 @@ class RegistrationPage:
         self.registered_user_data = browser.element('.table').all('td').even
 
         self.react_class = '.react-datepicker__day--outside-month'
+        self.url_path = '/automation-practice-form'
+        self.form_title = 'Practice Form'
 
     def open(self):
-        browser.open('/automation-practice-form')
-        self.main_header.should(have.exact_text('Practice Form'))
+        browser.open(self.url_path)
+        self.main_header.should(have.exact_text(self.form_title))
 
     def fill_full_name(self, first_name, last_name):
         self.first_name.type(first_name)
