@@ -2,6 +2,8 @@ import os
 
 from selene import browser, have
 
+from data.users import Users
+
 
 class RegistrationPage:
 
@@ -20,17 +22,17 @@ class RegistrationPage:
 
         self.subjects_input = browser.element('#subjectsInput')
         self.hobbies_wrapper = browser.all('#hobbiesWrapper .custom-control-label')
-        self.upload_picture = browser.element('#uploadPicture')
+        self.upload_pic = browser.element('#uploadPicture')
         self.current_address = browser.element('#currentAddress')
         self.select_state = browser.element('#state')
         self.state = browser.element('#react-select-3-option-2')
         self.select_city = browser.element('#city')
         self.city = browser.element('#react-select-4-option-1')
         self.submit = browser.element('#submit')
-        self.registered_user_data = browser.element('.table').all('td').even
 
         self.react_class = '.react-datepicker__day--outside-month'
         self.url_path = '/automation-practice-form'
+        self.resource_path = '..\\resources'
         self.form_title = 'Practice Form'
 
     def open(self):
@@ -69,21 +71,33 @@ class RegistrationPage:
         self.subjects_input.type(first_subject).press_enter()
         self.subjects_input.type(second_subject).press_enter()
 
-    def choose_hobies(self):
+    def choose_hobbies(self):
         for index in range(0, 3):
             self.hobbies_wrapper \
                 .should(have.size_greater_than(0)) \
                 .element(index).click()
 
-    def uplod_picture(self, file_name):
-        self.upload_picture.set_value(os.path.join(os.path.abspath('..\\resources'), file_name))
+    def upload_picture(self, file_name):
+        self.upload_pic.set_value(os.path.join(os.path.abspath(self.resource_path), file_name))
 
     def fill_current_address(self, address):
         self.current_address.type(address)
 
-    def choose_locatio(self, state, city):
+    def choose_location(self, state, city):
         self.select_state.click()
         self.state.should(have.exact_text(state)).click()
         self.select_city.click()
         self.city.should(have.exact_text(city)).click()
         self.submit.click()
+
+    def register(self, user: Users):
+        self.fill_full_name(user.first_name, user.last_name)
+        self.fill_email(user.user_mail)
+        self.choose_gender(user.gender)
+        self.fill_tel_number(user.tel_number)
+        self.fill_date_of_birth(user.month, user.year, user.day)
+        self.fill_subjects(user.first_subject, user.second_subject)
+        self.choose_hobbies()
+        self.upload_picture(user.upload_picture_name)
+        self.fill_current_address(user.current_address)
+        self.choose_location(user.state, user.city)
