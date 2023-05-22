@@ -2,6 +2,7 @@ import os
 
 from selene import browser, have
 
+import tests
 from data.users import Users
 
 
@@ -32,7 +33,7 @@ class RegistrationPage:
 
         self.react_class = '.react-datepicker__day--outside-month'
         self.url_path = '/automation-practice-form'
-        self.resource_path = '..\\resources'
+        self.resource_path = '..\\resources\\'
         self.form_title = 'Practice Form'
 
     def open(self):
@@ -78,7 +79,8 @@ class RegistrationPage:
                 .element(index).click()
 
     def upload_picture(self, file_name):
-        self.upload_pic.set_value(os.path.join(os.path.abspath(self.resource_path), file_name))
+        self.upload_pic.set_value(
+            os.path.abspath(os.path.join(os.path.dirname(tests.__file__), f'{self.resource_path}{file_name}')))
 
     def fill_current_address(self, address):
         self.current_address.type(address)
