@@ -33,7 +33,7 @@ class RegistrationPage:
 
         self.react_class = '.react-datepicker__day--outside-month'
         self.url_path = '/automation-practice-form'
-        self.resource_path = '..\\resources\\'
+        self.resource_path = '../resources/'
         self.form_title = 'Practice Form'
 
     def open(self):
