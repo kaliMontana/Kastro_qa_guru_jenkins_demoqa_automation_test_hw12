@@ -2,6 +2,8 @@ import os
 
 from selene import browser, have
 
+import tests
+
 
 class RegistrationPage:
 
@@ -46,18 +48,19 @@ class RegistrationPage:
                 .element(index).click()
 
     def uplod_picture(self, file_name):
-        browser.element('#uploadPicture').set_value(os.path.join(os.path.abspath('..\\resources'), file_name))
+        browser.element('#uploadPicture').set_value(
+            os.path.abspath(os.path.join(os.path.dirname(tests.__file__), f'../resources/{file_name}')))
 
     def fill_current_address(self, address):
-        browser.element('#currentAddress').type(address)
+            browser.element('#currentAddress').type(address)
 
     def choose_locatio(self, state, city):
-        browser.element('#state').click()
-        browser.element('#react-select-3-option-2').should(have.exact_text(state)).click()
-        browser.element('#city').click()
-        browser.element('#react-select-4-option-1').should(have.exact_text(city)).click()
-        browser.element('#submit').click()
+            browser.element('#state').click()
+            browser.element('#react-select-3-option-2').should(have.exact_text(state)).click()
+            browser.element('#city').click()
+            browser.element('#react-select-4-option-1').should(have.exact_text(city)).click()
+            browser.element('#submit').click()
 
     def registered_user_data(self):
-        browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
-        return browser.element('.table').all('td').even
+            browser.element('.modal-title').should(have.exact_text('Thanks for submitting the form'))
+            return browser.element('.table').all('td').even
