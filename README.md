@@ -5,4 +5,8 @@ https://demoqa.com/automation-practice-form
 
 ЧАСТЬ II (реализовать в бренче high-level-step-objects)
 
+To install frameworks:
 python -m pip install -r requirements.txt
+
+To start test from console:
+python -m  pytest
