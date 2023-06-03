@@ -1,8 +1,8 @@
-# Kastro_qa_guru_page_object_demoqa_automation_test_hw9
-https://demoqa.com/automation-practice-form
+Kastro_qa_guru_jenkins_demoqa_automation_test_hw12
 
-ЧАСТЬ I (реализовать в бренче mid-level-step-objects) - main branch
+Задание:
+1. Взять свой код для http://demoqa.com/automation-practice-form
+2. Добавить аттачи для Allure – скриншот, page source, console.log и видео
+3. Cделать сборку в Jenkins
 
-ЧАСТЬ II (реализовать в бренче high-level-step-objects)
-
-python -m pip install -r requirements.txt
+В качестве ответа на нужно приложить ссылку на Allure-отчет в Jenkins (с видео)
