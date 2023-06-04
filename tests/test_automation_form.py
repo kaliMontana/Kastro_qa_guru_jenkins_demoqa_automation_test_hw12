@@ -1,6 +1,8 @@
 import allure
 from allure_commons.types import Severity
-from selene import browser
+from selene.support.shared import browser
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from data import users
 from pages.profile_page import ProfilePage
@@ -15,6 +17,23 @@ from utils import attach
 @allure.story('Пользователь вводит свои данные')
 @allure.link('http://demoqa.com/automation-practice-form', name='demoqa')
 def test_form():
+    options = Options()
+
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": False
+        }
+    }
+    options.capabilities.update(selenoid_capabilities)
+
+    driver = webdriver.Remote(
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub/",
+        options=options)
+    browser.config.driver = driver
+
     student = users.student
     registration_page = RegistrationPage()
     profile_page = ProfilePage()
