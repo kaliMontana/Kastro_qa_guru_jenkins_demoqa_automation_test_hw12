@@ -135,3 +135,9 @@ dmypy.json
 /.idea/misc.xml
 /.idea/Kastro_qa_guru_page_object_demoqa_automation_test_hw9.iml
 /.idea/.gitignore
+
+# Allure
+tests/allure-results
+
+# Idea
+.idea
