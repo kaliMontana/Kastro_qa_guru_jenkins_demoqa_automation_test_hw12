@@ -1,5 +1,6 @@
 import os
 
+import allure
 from selene import browser, have
 
 import tests
@@ -36,23 +37,29 @@ class RegistrationPage:
         self.resource_path = '../resources/'
         self.form_title = 'Practice Form'
 
+    @allure.step('Открыть главную страницу')
     def open(self):
         browser.open(self.url_path)
         self.main_header.should(have.exact_text(self.form_title))
 
+    @allure.step('ВВодить полное имя')
     def fill_full_name(self, first_name, last_name):
         self.first_name.type(first_name)
         self.last_name.type(last_name)
 
+    @allure.step('Вводить емайл')
     def fill_email(self, email):
         self.user_mail.type(email)
 
+    @allure.step('Вводить пол')
     def choose_gender(self, gender):
         browser.element(f'[value={gender}] + label').click()
 
+    @allure.step('Вводить номер телефона')
     def fill_tel_number(self, number):
         self.tel_number.type(number)
 
+    @allure.step('Вводить дату рождения')
     def fill_date_of_birth(self, month, year, day):
         self.date_of_birth_input.click()
         self.month_select.click()
@@ -68,23 +75,28 @@ class RegistrationPage:
         browser.element(f'.react-datepicker__day--00{day}') \
             .should(have.no.css_class(self.react_class)).click()
 
+    @allure.step('Вводить предметы интереса')
     def fill_subjects(self, first_subject, second_subject):
         self.subjects_input.type(first_subject).press_enter()
         self.subjects_input.type(second_subject).press_enter()
 
+    @allure.step('Выбирать увлечения')
     def choose_hobbies(self):
         for index in range(0, 3):
             self.hobbies_wrapper \
                 .should(have.size_greater_than(0)) \
                 .element(index).click()
 
+    @allure.step('Загрузить файл')
     def upload_picture(self, file_name):
         self.upload_pic.set_value(
             os.path.abspath(os.path.join(os.path.dirname(tests.__file__), f'{self.resource_path}{file_name}')))
 
+    @allure.step('Вводить адрес проживания')
     def fill_current_address(self, address):
         self.current_address.type(address)
 
+    @allure.step('Выбирать место нахождения')
     def choose_location(self, state, city):
         self.select_state.click()
         self.state.should(have.exact_text(state)).click()
@@ -92,6 +104,7 @@ class RegistrationPage:
         self.city.should(have.exact_text(city)).click()
         self.submit.click()
 
+    @allure.step('Зарегистрировать пользователя')
     def register(self, user: Users):
         self.fill_full_name(user.first_name, user.last_name)
         self.fill_email(user.user_mail)
