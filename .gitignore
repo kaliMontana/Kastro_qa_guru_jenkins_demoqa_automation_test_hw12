@@ -137,7 +137,7 @@ dmypy.json
 /.idea/.gitignore
 
 # Allure
-./allure-results
+/allure-results/
 
 # Idea
 .idea
