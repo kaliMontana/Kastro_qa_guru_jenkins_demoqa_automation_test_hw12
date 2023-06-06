@@ -41,6 +41,8 @@ class RegistrationPage:
     def open(self):
         browser.open(self.url_path)
         self.main_header.should(have.exact_text(self.form_title))
+        browser.driver.execute_script("$('footer').remove()")
+        browser.driver.execute_script("$('#fixedban').remove()")
 
     @allure.step('ВВодить полное имя')
     def fill_full_name(self, first_name, last_name):
