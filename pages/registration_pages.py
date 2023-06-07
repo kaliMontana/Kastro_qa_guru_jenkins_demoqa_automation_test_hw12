@@ -1,7 +1,7 @@
 import os
 
 import allure
-from selene import browser, have
+from selene import have
 
 import tests
 from data.users import Users
@@ -9,7 +9,7 @@ from data.users import Users
 
 class RegistrationPage:
 
-    def __init__(self):
+    def __init__(self, browser):
         self.main_header = browser.element('.main-header')
         self.first_name = browser.element('#firstName')
         self.last_name = browser.element('#lastName')
@@ -33,12 +33,12 @@ class RegistrationPage:
         self.submit = browser.element('#submit')
 
         self.react_class = '.react-datepicker__day--outside-month'
-        self.url_path = '/automation-practice-form'
+        self.url_path = 'automation-practice-form'
         self.resource_path = '../resources/'
         self.form_title = 'Practice Form'
 
     @allure.step('Открыть главную страницу')
-    def open(self):
+    def open(self, browser):
         browser.open(self.url_path)
         self.main_header.should(have.exact_text(self.form_title))
         browser.driver.execute_script("$('footer').remove()")
@@ -54,7 +54,7 @@ class RegistrationPage:
         self.user_mail.type(email)
 
     @allure.step('Вводить пол')
-    def choose_gender(self, gender):
+    def choose_gender(self, gender, browser):
         browser.element(f'[value={gender}] + label').click()
 
     @allure.step('Вводить номер телефона')
@@ -62,7 +62,7 @@ class RegistrationPage:
         self.tel_number.type(number)
 
     @allure.step('Вводить дату рождения')
-    def fill_date_of_birth(self, month, year, day):
+    def fill_date_of_birth(self, month, year, day, browser):
         self.date_of_birth_input.click()
         self.month_select.click()
         self.month_select_option \
@@ -107,12 +107,12 @@ class RegistrationPage:
         self.submit.click()
 
     @allure.step('Зарегистрировать пользователя')
-    def register(self, user: Users):
+    def register(self, user: Users, browser):
         self.fill_full_name(user.first_name, user.last_name)
         self.fill_email(user.user_mail)
-        self.choose_gender(user.gender)
+        self.choose_gender(user.gender, browser)
         self.fill_tel_number(user.tel_number)
-        self.fill_date_of_birth(user.month, user.year, user.day)
+        self.fill_date_of_birth(user.month, user.year, user.day, browser)
         self.fill_subjects(user.first_subject, user.second_subject)
         self.choose_hobbies()
         self.upload_picture(user.upload_picture_name)

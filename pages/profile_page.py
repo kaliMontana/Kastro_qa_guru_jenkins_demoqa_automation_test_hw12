@@ -1,11 +1,11 @@
 import allure
-from selene import browser, have
+from selene import have
 
 from data.users import Users
 
 
 class ProfilePage:
-    def __init__(self):
+    def __init__(self, browser):
         self.registered_user_data = browser.element('.table').all('td').even
 
     @allure.step('Проверить данны регистрации')
