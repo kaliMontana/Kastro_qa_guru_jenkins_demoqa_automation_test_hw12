@@ -6,3 +6,6 @@ Kastro_qa_guru_jenkins_demoqa_automation_test_hw12
 3. Cделать сборку в Jenkins
 
 В качестве ответа на нужно приложить ссылку на Allure-отчет в Jenkins (с видео)
+
+Запуск из терминала:
+python -m pytest --browser_version=99.0
